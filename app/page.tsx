@@ -1,3 +1,4 @@
+import AboutMe from "@/component/home/AboutMe";
 import Hero from "@/component/home/Hero";
 import SelectedWork from "@/component/home/SelectedWork";
 import SkillsStrip from "@/component/home/SkillsStrip";
@@ -8,6 +9,7 @@ export default function Home() {
       <Hero />
       <SkillsStrip />
       <SelectedWork />
+      <AboutMe />
     </main>
   );
 }
