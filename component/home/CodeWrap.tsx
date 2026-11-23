@@ -1,6 +1,6 @@
 export default function CodeWrap() {
   return (
-    <div className="relative bg-secondary font-mono text-background rounded-lg">
+    <div className="w-full h-fit lg:max-w-lg relative bg-secondary font-mono text-background rounded-lg">
       <div className="absolute top-6 -right-4 -bottom-6 left-4 -z-10 rounded-3xl bg-primary"></div>
 
       <div className="flex items-center gap-6 p-4 relative overflow-hidden rounded-3xl bg-secondary text-secondary-foreground shadow-[0_30px_60px_-20px_var(--code-shadow)]">
@@ -20,8 +20,8 @@ export default function CodeWrap() {
         </p>
         <div className="mt-4">
           <p>
-            app.get(<span className="text-mint">'/projects'</span>, (req, res)
-            =&gt; {"{"}
+            app.get(<span className="text-mint">&apos;/projects&apos;</span>,
+            (req, res) =&gt; {"{"}
           </p>
           <p className="ml-4">
             <span className="text-accent">const</span> list ={" "}
