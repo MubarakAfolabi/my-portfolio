@@ -6,7 +6,7 @@ import Footer from "@/component/layout/Footer";
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-14 mt-8">
+    <main className="flex flex-col gap-14 mt-30">
       <Hero />
       <SkillsStrip />
       <SelectedWork />
