@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, DM_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import Header from "@/component/layout/Header";
 
 const heading = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -35,7 +36,10 @@ export default function RootLayout({
       lang="en"
       className={`${heading.variable} ${sans.variable} ${mono.variable}`}
     >
-      <body className="min-h-full flex flex-col ">{children}</body>
+      <body className="min-h-full flex flex-col ">
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
