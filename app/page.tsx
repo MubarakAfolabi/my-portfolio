@@ -1,11 +1,11 @@
-import CodeWrap from "@/component/home/CodeWrap";
 import Hero from "@/component/home/Hero";
+import SkillsStrip from "@/component/home/SkillsStrip";
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-10 px-6 mt-10">
+    <main className="flex flex-col gap-14 mt-8">
       <Hero />
-      <CodeWrap />
+      <SkillsStrip />
     </main>
   );
 }

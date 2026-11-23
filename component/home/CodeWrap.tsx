@@ -1,6 +1,6 @@
 export default function CodeWrap() {
   return (
-    <section className="relative bg-secondary font-mono text-background rounded-lg">
+    <div className="relative bg-secondary font-mono text-background rounded-lg">
       <div className="absolute top-6 -right-4 -bottom-6 left-4 -z-10 rounded-3xl bg-primary"></div>
 
       <div className="flex items-center gap-6 p-4 relative overflow-hidden rounded-3xl bg-secondary text-secondary-foreground shadow-[0_30px_60px_-20px_var(--code-shadow)]">
@@ -35,6 +35,6 @@ export default function CodeWrap() {
           app.listen(<span className="text-code-number">3000</span>);
         </p>
       </div>
-    </section>
+    </div>
   );
 }
