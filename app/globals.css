@@ -27,6 +27,15 @@
   --ring: hsl(17 88% 40%);
 
   --radius: 1.5rem;
+
+  --code-comment: hsl(40 38% 92% / 0.5);
+  --code-number: hsl(42 74% 57%);
+  --code-border: hsl(40 38% 92% / 0.13);
+  --code-shadow: hsl(152 27% 11% / 0.5);
+
+  --dot-red: hsl(14 77% 54%);
+  --dot-yellow: hsl(42 74% 57%);
+  --dot-green: hsl(147 38% 50%);
 }
 
 @theme inline {
@@ -54,6 +63,13 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+
+  --color-code-comment: var(--code-comment);
+  --color-code-number: var(--code-number);
+  --color-code-border: var(--code-border);
+  --color-dot-red: var(--dot-red);
+  --color-dot-yellow: var(--dot-yellow);
+  --color-dot-green: var(--dot-green);
 
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 8px);
