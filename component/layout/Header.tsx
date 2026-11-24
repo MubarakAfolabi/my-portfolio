@@ -89,7 +89,6 @@ export default function Header() {
           </nav>
         </div>
 
-        {/* Mobile dropdown: always rendered, height + opacity animated */}
         <div
           id="mobile-menu"
           inert={!dropdown}
