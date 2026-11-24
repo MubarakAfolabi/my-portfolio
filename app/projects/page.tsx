@@ -1,5 +1,6 @@
 import Footer from "@/component/layout/Footer";
 import ProjectCard from "@/component/ui/ProjectCard";
+import { projects } from "@/data/projects";
 
 export default function Projects() {
   return (
@@ -31,9 +32,11 @@ export default function Projects() {
         </div>
 
         <ul className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-10">
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
+          {projects.map((project) => {
+            return (
+              <ProjectCard key={project.slug} project={project} showTools />
+            );
+          })}
         </ul>
       </section>
 

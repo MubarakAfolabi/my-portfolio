@@ -1,6 +1,7 @@
 import { MoveRight } from "lucide-react";
 import Link from "next/link";
 import ProjectCard from "../ui/ProjectCard";
+import { Project, projects } from "@/data/projects";
 
 export default function SelectedWork() {
   return (
@@ -22,9 +23,15 @@ export default function SelectedWork() {
       </div>
 
       <ul className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-8">
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
+        {projects.slice(0, 3).map((project: Project) => {
+          return (
+            <ProjectCard
+              key={project.slug}
+              project={project}
+              showTools={false}
+            />
+          );
+        })}
       </ul>
     </section>
   );
