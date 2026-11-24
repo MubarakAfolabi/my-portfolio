@@ -1,9 +1,32 @@
-import { ChevronDown, MoveRight } from "lucide-react";
+"use client";
+
+import { FormState, sendMessage } from "@/app/contact/action";
+import { MoveRight } from "lucide-react";
+import { useActionState } from "react";
+
+const initialState: FormState = { status: "idle", message: "" };
 
 const fieldClass =
   "w-full rounded-xl bg-white p-4 outline-none ring-[1.5px] ring-foreground/25 placeholder:text-foreground/40 focus:ring-2 focus:ring-primary";
 
 export default function ContactForm() {
+  const [state, formAction, pending] = useActionState(
+    sendMessage,
+    initialState,
+  );
+
+  if (state.status === "success") {
+    return (
+      <div
+        role="status"
+        className="rounded-2xl bg-secondary p-8 text-secondary-foreground"
+      >
+        <h2 className="text-3xl">Message sent ✓</h2>
+        <p className="mt-2 text-secondary-foreground/80">{state.message}</p>
+      </div>
+    );
+  }
+
   return (
     <section className="flex flex-col gap-10 mb-20">
       <div className="flex flex-col gap-4">
@@ -18,7 +41,17 @@ export default function ContactForm() {
         </p>
       </div>
 
-      <form className="flex flex-col gap-5">
+      <form action={formAction} className="flex flex-col gap-5" noValidate>
+        {/* Honeypot (hidden from people) */}
+        <input
+          type="text"
+          name="company"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden
+          className="hidden"
+        />
+
         <div className="flex flex-col gap-2">
           <label htmlFor="name" className="text-sm font-semibold">
             Your name
@@ -29,9 +62,13 @@ export default function ContactForm() {
             type="text"
             placeholder="Jane Doe"
             autoComplete="name"
-            required
+            defaultValue={state.values?.name}
+            aria-invalid={!!state.errors?.name}
             className={fieldClass}
           />
+          {state.errors?.name && (
+            <p className="text-sm text-primary">{state.errors.name}</p>
+          )}
         </div>
 
         <div className="flex flex-col gap-2">
@@ -44,32 +81,29 @@ export default function ContactForm() {
             type="email"
             placeholder="janedoe@email.com"
             autoComplete="email"
-            required
+            defaultValue={state.values?.email}
+            aria-invalid={!!state.errors?.email}
             className={fieldClass}
           />
+          {state.errors?.email && (
+            <p className="text-sm text-primary">{state.errors.email}</p>
+          )}
         </div>
 
         <div className="flex flex-col gap-2">
           <label htmlFor="topic" className="text-sm font-semibold">
             What would you like to talk about?
           </label>
-          <div className="relative">
-            <select
-              id="topic"
-              name="topic"
-              defaultValue="web-app"
-              className={`${fieldClass} appearance-none pr-12`}
-            >
-              <option value="web-app">Web app</option>
-              <option value="website">Website</option>
-              <option value="other">Something else</option>
-            </select>
-            <ChevronDown
-              size={20}
-              aria-hidden
-              className="pointer-events-none absolute top-1/2 right-4 -translate-y-1/2"
-            />
-          </div>
+          <select
+            id="topic"
+            name="topic"
+            defaultValue={state.values?.topic ?? "web-app"}
+            className={fieldClass}
+          >
+            <option value="web-app">Web app</option>
+            <option value="website">Website</option>
+            <option value="other">Something else</option>
+          </select>
         </div>
 
         <div className="flex flex-col gap-2">
@@ -81,23 +115,40 @@ export default function ContactForm() {
             name="message"
             rows={5}
             placeholder="Tell me about your project…"
-            required
+            defaultValue={state.values?.message}
+            aria-invalid={!!state.errors?.message}
             className={`${fieldClass} resize-y`}
           />
+          {state.errors?.message && (
+            <p className="text-sm text-primary">{state.errors.message}</p>
+          )}
         </div>
+
+        {state.status === "error" && (
+          <p role="alert" className="text-sm font-semibold text-primary">
+            {state.message}
+          </p>
+        )}
 
         <button
           type="submit"
-          className="flex items-center justify-center gap-2 rounded-full bg-foreground px-6 py-4 font-bold text-background transition-transform hover:-translate-y-0.5"
+          disabled={pending}
+          className="flex items-center justify-center gap-2 rounded-full bg-foreground px-6 py-4 font-bold text-background transition-transform hover:-translate-y-0.5 disabled:opacity-60"
         >
-          Send message <MoveRight size={20} aria-hidden />
+          {pending ? (
+            "Sending…"
+          ) : (
+            <>
+              Send message <MoveRight size={20} aria-hidden />
+            </>
+          )}
         </button>
 
         <p className="text-center text-sm text-foreground/70">
           Prefer email?{" "}
           <a
             href="mailto:mubarakbolu150@gmail.com"
-            className="font-semibold text-primary underline-offset-4 hover:underline"
+            className="font-semibold text-primary hover:underline"
           >
             mubarakbolu150@gmail.com
           </a>
