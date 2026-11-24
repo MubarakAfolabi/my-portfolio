@@ -12,7 +12,7 @@ export default function SelectedWork() {
             Things I&apos;ve built, shaped by curiosity and care.
           </h1>
           <Link
-            href="#"
+            href="/projects"
             className="flex shrink-0 whitespace-nowrap items-center gap-2 font-semibold border border-foreground text-foreground w-fit py-4 px-6 rounded-full cursor-pointer"
           >
             View all projects

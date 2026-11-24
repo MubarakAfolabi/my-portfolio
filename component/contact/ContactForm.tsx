@@ -5,7 +5,7 @@ const fieldClass =
 
 export default function ContactForm() {
   return (
-    <section className="mx-auto max-w-300 flex flex-col gap-10 px-6 mb-20">
+    <section className="flex flex-col gap-10 mb-20">
       <div className="flex flex-col gap-4">
         <div className="text-primary text-sm font-semibold">CONTACT</div>
         <h1 className="text-4xl lg:text-6xl">
@@ -13,8 +13,8 @@ export default function ContactForm() {
           <span className="text-primary">together.</span>
         </h1>
         <p>
-          Have an idea, a project or just a question? Send a message and I'll
-          get back to you soon.
+          Have an idea, a project or just a question? Send a message and
+          I&apos;ll get back to you soon.
         </p>
       </div>
 

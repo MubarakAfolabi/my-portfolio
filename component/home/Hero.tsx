@@ -23,13 +23,13 @@ export default function Hero() {
           </p>
           <div className="flex items-center gap-4">
             <Link
-              href="#"
+              href="/projects"
               className="font-semibold bg-foreground text-background py-4 px-6 rounded-full cursor-pointer"
             >
               View projects
             </Link>
             <Link
-              href="#"
+              href="/contact"
               className="font-semibold border border-foreground text-foreground py-4 px-6 rounded-full cursor-pointer"
             >
               Contact me

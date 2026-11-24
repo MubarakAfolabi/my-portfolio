@@ -2,6 +2,7 @@
 
 import { Menu, MoveRight, X } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const linkRoutes = [
@@ -15,6 +16,11 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [dropdown, setDropdown] = useState(false);
 
+  const pathname = usePathname();
+
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
 
@@ -23,7 +29,6 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close the menu if the screen grows to the desktop layout
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 768px)");
     const handleChange = (e: MediaQueryListEvent) => {
@@ -80,7 +85,10 @@ export default function Header() {
             <ul className="flex items-center gap-4">
               {linkRoutes.map((route) => (
                 <li key={route.name}>
-                  <Link href={route.href} className="font-semibold text-sm">
+                  <Link
+                    href={route.href}
+                    className={`font-semibold text-sm ${isActive(route.href) ? "text-accent" : ""}`}
+                  >
                     {route.name}
                   </Link>
                 </li>

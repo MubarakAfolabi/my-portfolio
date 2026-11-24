@@ -1,3 +1,5 @@
+"use client";
+
 import { ArrowUp, CircleLetterC, MoveRight } from "lucide-react";
 import Link from "next/link";
 
@@ -48,7 +50,11 @@ export default function Footer() {
             <CircleLetterC size={14} />
             2026 Mubarak
           </div>
-          <button className="flex items-center gap-1 hover:text-accent transition-all cursor-pointer">
+          <button
+            type="button"
+            className="flex items-center gap-1 hover:text-accent transition-all cursor-pointer"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
             Back to top
             <ArrowUp size={14} />
           </button>

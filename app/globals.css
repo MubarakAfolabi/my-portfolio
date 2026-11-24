@@ -80,6 +80,10 @@
   --font-mono: var(--font-jetbrains), monospace;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @layer base {
   body {
     background-color: var(--background);
@@ -95,5 +99,11 @@
     font-family: var(--font-heading);
     font-weight: 800;
     letter-spacing: -0.04em;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
   }
 }

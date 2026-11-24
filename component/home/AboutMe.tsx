@@ -1,6 +1,9 @@
 export default function AboutMe() {
   return (
-    <section className="mx-auto grid max-w-300 items-center gap-10 px-6 py-16 md:grid-cols-[2fr_3fr] md:gap-16 md:py-28">
+    <section
+      id="about"
+      className="mx-auto grid max-w-300 items-center gap-10 px-6 py-16 md:grid-cols-[2fr_3fr] md:gap-16 md:py-28"
+    >
       <div className="relative mx-auto aspect-4/5 w-full max-w-sm rounded-3xl bg-muted md:mx-0">
         {/* <Image src="/me.jpg" alt="Mubarak" fill className="rounded-3xl object-cover" /> */}
         <div className="absolute right-3 bottom-3 grid size-20 place-items-center rounded-full bg-primary text-lg font-bold text-primary-foreground md:-right-4 md:-bottom-4 md:size-24">
