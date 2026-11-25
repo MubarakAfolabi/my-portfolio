@@ -18,6 +18,10 @@ export default function ContactForm() {
 
   const turnstileRef = useRef<TurnstileInstance>(null);
 
+  useEffect(() => {
+    if (state.status === "error") turnstileRef.current?.reset();
+  }, [state]);
+
   if (state.status === "success") {
     return (
       <div
@@ -29,10 +33,6 @@ export default function ContactForm() {
       </div>
     );
   }
-
-  useEffect(() => {
-    if (state.status === "error") turnstileRef.current?.reset();
-  }, [state]);
 
   return (
     <section className="flex flex-col gap-10 mb-20">
