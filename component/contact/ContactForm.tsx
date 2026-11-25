@@ -1,8 +1,9 @@
 "use client";
 
 import { FormState, sendMessage } from "@/app/contact/action";
+import { Turnstile, TurnstileInstance } from "@marsidev/react-turnstile";
 import { MoveRight } from "lucide-react";
-import { useActionState } from "react";
+import { useActionState, useEffect, useRef } from "react";
 
 const initialState: FormState = { status: "idle", message: "" };
 
@@ -15,6 +16,8 @@ export default function ContactForm() {
     initialState,
   );
 
+  const turnstileRef = useRef<TurnstileInstance>(null);
+
   if (state.status === "success") {
     return (
       <div
@@ -26,6 +29,10 @@ export default function ContactForm() {
       </div>
     );
   }
+
+  useEffect(() => {
+    if (state.status === "error") turnstileRef.current?.reset();
+  }, [state]);
 
   return (
     <section className="flex flex-col gap-10 mb-20">
@@ -129,6 +136,12 @@ export default function ContactForm() {
             {state.message}
           </p>
         )}
+
+        <Turnstile
+          ref={turnstileRef}
+          siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+          options={{ theme: "light" }}
+        />
 
         <button
           type="submit"

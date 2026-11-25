@@ -11,6 +11,22 @@ export type FormState = {
   values?: { name: string; email: string; topic: string; message: string };
 };
 
+async function verifyTurnstile(token: string) {
+  const res = await fetch(
+    "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        secret: process.env.TURNSTILE_SECRET_KEY!,
+        response: token,
+      }),
+    },
+  );
+  const data = await res.json();
+  return data.success === true;
+}
+
 export async function sendMessage(
   _prev: FormState,
   formData: FormData,
@@ -25,6 +41,16 @@ export async function sendMessage(
   const topic = String(formData.get("topic") ?? "other");
   const message = String(formData.get("message") ?? "").trim();
   const values = { name, email, topic, message };
+
+  const token = String(formData.get("cf-turnstile-response") ?? "");
+
+  if (!token || !(await verifyTurnstile(token))) {
+    return {
+      status: "error",
+      message: "Verification failed. Please try again.",
+      values,
+    };
+  }
 
   const errors: NonNullable<FormState["errors"]> = {};
   if (name.length < 2) errors.name = "Please enter your name.";
