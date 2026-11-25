@@ -140,7 +140,7 @@ export default async function ProjectDetails({ params }: Props) {
 
         <ul className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-8">
           {others.map((p) => (
-            <ProjectCard key={p.slug} project={p} />
+            <ProjectCard key={p.slug} project={p} showTools />
           ))}
         </ul>
       </section>
